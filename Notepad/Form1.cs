@@ -34,7 +34,9 @@ namespace Notepad
         /// <param name="e"></param>
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            StreamWriter sw = new StreamWriter( "text.txt", false );
+            sw.Write( NotepadTextBox.Text );
+            sw.Close();
         }
 
         /// <summary>
