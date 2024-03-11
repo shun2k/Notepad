@@ -69,21 +69,21 @@
             // NewToolStripMenuItem
             // 
             NewToolStripMenuItem.Name = "NewToolStripMenuItem";
-            NewToolStripMenuItem.Size = new Size(122, 22);
+            NewToolStripMenuItem.Size = new Size(180, 22);
             NewToolStripMenuItem.Text = "新規作成";
             NewToolStripMenuItem.Click += NewToolStripMenuItem_Click;
             // 
             // ReadToolStripMenuItem
             // 
             ReadToolStripMenuItem.Name = "ReadToolStripMenuItem";
-            ReadToolStripMenuItem.Size = new Size(122, 22);
+            ReadToolStripMenuItem.Size = new Size(180, 22);
             ReadToolStripMenuItem.Text = "読み込み";
             ReadToolStripMenuItem.Click += ReadToolStripMenuItem_Click;
             // 
             // SaveToolStripMenuItem
             // 
             SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
-            SaveToolStripMenuItem.Size = new Size(122, 22);
+            SaveToolStripMenuItem.Size = new Size(180, 22);
             SaveToolStripMenuItem.Text = "保存";
             SaveToolStripMenuItem.Click += SaveToolStripMenuItem_Click;
             // 
@@ -95,6 +95,7 @@
             // NotepadOpenFileDialog
             // 
             NotepadOpenFileDialog.FileName = "openFileDialog1";
+            NotepadOpenFileDialog.Filter = "テキストファイル|*.txt|すべてのファイル|*.*";
             NotepadOpenFileDialog.FileOk += NotepadOpenFileDialog_FileOk;
             // 
             // Form1

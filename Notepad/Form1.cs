@@ -24,7 +24,7 @@ namespace Notepad
         /// <param name="e"></param>
         private void ReadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            NotepadOpenFileDialog.ShowDialog();
         }
 
         /// <summary>
@@ -57,7 +57,9 @@ namespace Notepad
         /// <param name="e"></param>
         private void NotepadOpenFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            StreamReader sr = new StreamReader(NotepadOpenFileDialog.FileName, false);
+            NotepadTextBox.Text = sr.ReadToEnd();
+            sr.Close();
         }
     }
 }
