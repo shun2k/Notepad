@@ -48,6 +48,9 @@ namespace Notepad
             StreamWriter sw = new StreamWriter( NotepadSaveFileDialog.FileName, false);
             sw.Write( NotepadTextBox.Text );
             sw.Close();
+
+            string name = Path.GetFileName(NotepadSaveFileDialog.FileName);
+            Text = name + " - Notepad";
         }
 
         /// <summary>
@@ -60,6 +63,9 @@ namespace Notepad
             StreamReader sr = new StreamReader(NotepadOpenFileDialog.FileName, false);
             NotepadTextBox.Text = sr.ReadToEnd();
             sr.Close();
+
+            string name = Path.GetFileName(NotepadOpenFileDialog.FileName);
+            Text = name + " - Notepad";
         }
     }
 }
