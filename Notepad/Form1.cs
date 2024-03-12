@@ -14,7 +14,25 @@ namespace Notepad
         /// <param name="e"></param>
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NotepadTextBox.Text = "";
+            if ( NotepadTextBox.Modified == true )
+            {
+                DialogResult result = MessageBox.Show("内容が変更されています。保存しますか？", "ファイルの保存確認", MessageBoxButtons.YesNo);
+                if ( result == DialogResult.Yes )
+                {
+                    // ファイルに保存
+                    result = NotepadSaveFileDialog.ShowDialog();
+                    if ( result == DialogResult.OK )
+                    {
+                        NotepadTextBox.Text = "";
+                        Text = "無題 - Notepad";
+                    }
+                }
+            } else
+            {
+                NotepadTextBox.Text = "";
+                Text = "無題 - Notepad";
+            }
+           
         }
 
         /// <summary>
