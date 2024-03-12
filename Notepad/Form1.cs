@@ -35,7 +35,7 @@ namespace Notepad
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NotepadSaveFileDialog.ShowDialog();
-           
+
         }
 
         /// <summary>
@@ -45,12 +45,14 @@ namespace Notepad
         /// <param name="e"></param>
         private void NotepadSaveFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            StreamWriter sw = new StreamWriter( NotepadSaveFileDialog.FileName, false);
-            sw.Write( NotepadTextBox.Text );
+            StreamWriter sw = new StreamWriter(NotepadSaveFileDialog.FileName, false);
+            sw.Write(NotepadTextBox.Text);
             sw.Close();
 
             string name = Path.GetFileName(NotepadSaveFileDialog.FileName);
             Text = name + " - Notepad";
+
+            NotepadTextBox.Modified = false;
         }
 
         /// <summary>
@@ -66,6 +68,15 @@ namespace Notepad
 
             string name = Path.GetFileName(NotepadOpenFileDialog.FileName);
             Text = name + " - Notepad";
+        }
+
+        private void NotepadTextBox_ModifiedChanged(object sender, EventArgs e)
+        {
+            if ( NotepadTextBox.Modified == true )
+            {
+                Text = "*" + Text;
+            }
+
         }
     }
 }

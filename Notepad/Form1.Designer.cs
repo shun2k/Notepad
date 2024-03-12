@@ -49,6 +49,7 @@
             NotepadTextBox.Size = new Size(800, 424);
             NotepadTextBox.TabIndex = 0;
             NotepadTextBox.WordWrap = false;
+            NotepadTextBox.ModifiedChanged += NotepadTextBox_ModifiedChanged;
             // 
             // NotepadMenuStrip
             // 
