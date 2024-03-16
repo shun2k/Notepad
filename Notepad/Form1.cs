@@ -106,11 +106,20 @@ namespace Notepad
 
         private void NotepadTextBox_ModifiedChanged(object sender, EventArgs e)
         {
-            if ( NotepadTextBox.Modified == true )
+            if (NotepadTextBox.Modified == true)
             {
                 Text = "*" + Text;
             }
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            bool result = SaveCanfirmation();
+            if (result == false)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

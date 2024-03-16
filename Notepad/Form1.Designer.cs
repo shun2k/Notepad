@@ -109,6 +109,7 @@
             MainMenuStrip = NotepadMenuStrip;
             Name = "Form1";
             Text = "無題 - Notepad";
+            FormClosing += Form1_FormClosing;
             NotepadMenuStrip.ResumeLayout(false);
             NotepadMenuStrip.PerformLayout();
             ResumeLayout(false);
