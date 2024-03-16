@@ -7,6 +7,24 @@ namespace Notepad
             InitializeComponent();
         }
 
+        private bool IsSaved()
+        {
+            if (NotepadTextBox.Modified == true)
+            {
+                DialogResult result = MessageBox.Show("内容が変更されています。保存しますか？", "ファイルの保存確認", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // ファイルに保存
+                    result = NotepadSaveFileDialog.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// 新規作成ボタンの選択
         /// </summary>
@@ -14,25 +32,12 @@ namespace Notepad
         /// <param name="e"></param>
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ( NotepadTextBox.Modified == true )
-            {
-                DialogResult result = MessageBox.Show("内容が変更されています。保存しますか？", "ファイルの保存確認", MessageBoxButtons.YesNo);
-                if ( result == DialogResult.Yes )
-                {
-                    // ファイルに保存
-                    result = NotepadSaveFileDialog.ShowDialog();
-                    if ( result == DialogResult.OK )
-                    {
-                        NotepadTextBox.Text = "";
-                        Text = "無題 - Notepad";
-                    }
-                }
-            } else
+            bool result = IsSaved();
+            if (result == true)
             {
                 NotepadTextBox.Text = "";
                 Text = "無題 - Notepad";
             }
-           
         }
 
         /// <summary>
@@ -42,6 +47,7 @@ namespace Notepad
         /// <param name="e"></param>
         private void ReadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            IsSaved();
             NotepadOpenFileDialog.ShowDialog();
         }
 
