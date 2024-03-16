@@ -7,11 +7,11 @@ namespace Notepad
             InitializeComponent();
         }
 
-        private bool IsSaved()
+        private bool SaveCanfirmation()
         {
             if (NotepadTextBox.Modified == true)
             {
-                DialogResult result = MessageBox.Show("内容が変更されています。保存しますか？", "ファイルの保存確認", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("内容が変更されています。保存しますか？", "ファイルの保存確認", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
                     // ファイルに保存
@@ -21,8 +21,12 @@ namespace Notepad
                         return true;
                     }
                 }
+                else if (result == DialogResult.Cancel)
+                {
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -32,11 +36,12 @@ namespace Notepad
         /// <param name="e"></param>
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool result = IsSaved();
+            bool result = SaveCanfirmation();
             if (result == true)
             {
                 NotepadTextBox.Text = "";
                 Text = "無題 - Notepad";
+                NotepadTextBox.Modified = false;
             }
         }
 
@@ -47,8 +52,11 @@ namespace Notepad
         /// <param name="e"></param>
         private void ReadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IsSaved();
-            NotepadOpenFileDialog.ShowDialog();
+            bool result = SaveCanfirmation();
+            if (result == true)
+            {
+                NotepadOpenFileDialog.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -92,6 +100,8 @@ namespace Notepad
 
             string name = Path.GetFileName(NotepadOpenFileDialog.FileName);
             Text = name + " - Notepad";
+
+            NotepadTextBox.Modified = false;
         }
 
         private void NotepadTextBox_ModifiedChanged(object sender, EventArgs e)
